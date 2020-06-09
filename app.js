@@ -66,6 +66,7 @@ app.post("/edu/comunity",isLoggedIn,function(req,res){
 //---authen-----
 app.get("/",function(req,res){
     res.render("main");
+    console.log("Wellcome");
 });
 app.get("/thaiquiz",function(req,res){
     res.render("thaiquize");
