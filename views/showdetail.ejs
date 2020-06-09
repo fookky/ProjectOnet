@@ -1,0 +1,14 @@
+<%- include("partials/header") %>
+<br><br><br><br><br>
+<section style=" width: 100%; height: 100vh; background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),url(https://cdn.marketingoops.com/wp-content/uploads/2014/12/education-booksOK.jpg);background-size: cover;">
+    <br><br><br><br>
+    <div class="socialshow">
+    <form>
+    <h1 style="font-size: 50px;font-weight: bolder;"><center><%= post.name %></center></h1>
+    <center><img src=<%= post.image %>  style="width:450px; height:450px;" ></center>
+    <h3 style="font-size: 20px;"><center><%= post.desc %></center></h3>  
+    </form>
+</div>
+</section>
+
+<%- include("partials/footer") %>
