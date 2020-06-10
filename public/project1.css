@@ -256,8 +256,8 @@ li.Rmove-right{
 
 /*Hero*/
 .hero{
-    width: 100vmax;
-    height: 100%;
+    width: 100%;
+    height: 100vh;
     background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
     url("https://cdn.marketingoops.com/wp-content/uploads/2014/12/education-booksOK.jpg") center no-repeat ;
     background-size: cover;
@@ -412,17 +412,14 @@ li.Rmove-right{
   /*หน้า comunity*/
 
   
-  /*body
-  {
-    margin: 0;
-    padding: 0;
-    font-family: 'Fira Sans' , sans-serif;
-  }*/
+
   section{
     width: 100%;
-    height: 100vh;
-    background-color: azure;
+    height: 100vmax;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url("https://cdn.marketingoops.com/wp-content/uploads/2014/12/education-booksOK.jpg") center no-repeat ;
     background-size: cover;
+    background-position: center;
   }
   section .leftbox{
     width:100%;
@@ -446,7 +443,7 @@ li.Rmove-right{
     font-size: 50px;
     text-transform: uppercase;
   }
-  section .leftbox .content p{
+  section .leftbox .content para{
     margin: 10px 0 0;
     padding: 0;
   }
@@ -458,7 +455,7 @@ li.Rmove-right{
     float: right;
     box-sizing: border-box;
   }
-  section .events ul{
+  section .events .u{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -466,14 +463,14 @@ li.Rmove-right{
     padding: 40px;
     box-sizing: border-box;
   }
-  section .events ul li{
+  section .events .u .l{
     list-style: none;
     background: #fff;
     box-sizing: border-box;
     height: 200px;
     margin: 15px 0;
   }
-  section .events ul li .time{
+  section .events .u .l .time{
     position: relative;
     padding: 20px;
     background: #262626;
@@ -484,10 +481,10 @@ li.Rmove-right{
     text-align: center;
     transition: .5s;
   }
-  section .events ul li:hover .time{
+  section .events .u .l:hover .time{
     background: #e91e63;
   }
-  section .events ul li .time h2{
+  section .events .u .l .time h2{
     position: absolute;
     margin: 0;
     padding: 0;
@@ -498,10 +495,10 @@ li.Rmove-right{
     font-size: 60px;
     line-height: 30px;
   }
-  section .events ul li .time h2 span{
+  section .events .u .l .time h2 span{
     font-size: 30px;
   }
-  section .events ul li .detail{
+  section .events .u .l .detail{
     padding: 20px;
     background: #fff;
     box-sizing: border-box;
@@ -509,19 +506,19 @@ li.Rmove-right{
     height: 100%;
     float: left;
   }
-  section .events ul li .detail h3{
+  section .events .u .l .detail .h{
     position: relative;
     margin: 0;
     padding: 0;
     font-size: 22px;
   }
-  section .events ul li .detail p{
+  section .events .u .l .detail para{
     position: relative;
     margin: 10px 0 0;
     padding: 0;
     font-size: 16px;
   }
-  section .events ul li .detail a{
+  section .events .u .l .detail a{
     display: block;
     text-decoration: none;
     padding: 10px 15px;
@@ -531,7 +528,7 @@ li.Rmove-right{
     transition: .5s;
     float: right;
   }
-  section .events ul li .detail a:hover{
+  section .events .u .l .detail a:hover{
     background: #e91e63;
     color: #fff;
     border-color: #e91e63;
@@ -560,42 +557,37 @@ li.Rmove-right{
     section .leftbox .content h1{
       font-size: 20px;
     }
-    section .events ul{
+    section .events .u{
       position: relative;
       transform: translateY(0px);
       padding:0 20px 20px ;
-      
     }
-    section  .events ul li{
+    section  .events .u .l{
       height: auto;
       background: rgba(225, 225, 225, .8);
-     
     }
-    section  .events ul li .time{
+    section  .events .u .l .time{
       width: 80px;
       height: 80px;
       padding: 0;
-     
     }
-    section  .events ul li .time h2{
+    section  .events .u .l .time h2{
       font-size: 30px;
       line-height: 24px;
     }
-    section  .events ul li .time h2 span{
+    section  .events .u .l .time h2 span{
       font-size: 20px;
     }
-    section .events ul li .detail{
+    section .events .u .l .detail{
       width: 100%;
       float: none;
       padding-left: 100px;
       background: transparent;
     }
-    section .events ul li .detail a{
+    section .events .u .l .detail a{
       padding: 5px 10px;
     }
   }
-  
-
   input[type=text], select {
     width: 100%;
     padding: 12px 20px;

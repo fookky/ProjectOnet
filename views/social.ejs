@@ -1,35 +1,32 @@
 <%- include("partials/header") %>
-<br><br><br><br><br>
-<section class="hero" >
+<br><br><br><br><br><br><br>
+<section >
     <div class="leftbox">
       <div class="content">
         <h1>ชุมชนแห่งความรู้</h1>
         <p>เป็นชุมชนเเบ่งปันความรู้</p>
         <button  class="submit-btn" ><a href="/edu/post">สร้างกระทู้</a></button>
       </div>
-      
     </div>
     
-    <div class="events"></div>
-      <% Songkapai.forEach(function(ps){ %>
-      <ul>
-        <li>
-          <div class="time">
+    <div class="events">
+      <% post.forEach(function(ps){ %>
+        <ul class="u">
+          <li class="l">
+            <div class="time">
             <h2>24<span>JUNE</span></h2>
           </div>
           <div class="detail">
-            <h3><%= ps.name %></h3>
-            <p><%= ps.desc %></p>
-            <a href="/post/<%= ps._id %>">view detail</a>
+            <h3 class="h"><%= ps.name %></h3>
+            <p class="para"><%= ps.desc %></p>
+            <a href="/edu/post/<%= ps._id %>" >view detail</a>
           </div>
           <div style="clear: both;"></div>
         </li>
       </ul>
           <% }); %> 
     </div>
-
-    
+ 
   </section>
 
 <%- include("partials/footer") %>
-

@@ -1,17 +1,35 @@
 const express = require("express"),
-      router = express.Router();
-   post = require("../models/post");
+      router = express.Router(),
+      post = require("../models/post");
     
-router.get("/edu/comunity",isLoggedIn,function(req,res){
-    post.find({},function(error,allpost){
+router.get("/comunity",isLoggedIn,function(req,res){
+   post.find({},function(error,allpost){
         if(error){
-            console.log("error-------");
-        }else{
-            res.render("social",{Songkapai:allpost});
-        }
-    });
+           console.log("error-------");
+      }else{
+           
+           res.render("social",{post:allpost});
+           
+       }
+})
 });
-
+router.get("/",isLoggedIn,function(req,res){
+    res.render("index");
+   });
+router.get("/comunity",isLoggedIn,function(req,res){
+       res.render("social");
+   });
+   
+   
+router.get("/quiz",isLoggedIn,function(req,res){
+        res.render("quizeonet");
+   });
+   router.get("/thaiquiz",function(req,res){
+    res.render("thaiquize");
+});
+router.get("/review",function(req,res){
+    res.render("reviewdepart");
+});
 
 //router.get("/",middleware.isLoggedIn, function(req,res){
 //    Tarot.find({},function(error, allTarot){
@@ -23,10 +41,10 @@ router.get("/edu/comunity",isLoggedIn,function(req,res){
 //    })
 //});
 
-router.get("/edu/post",isLoggedIn,function(req,res){
+router.get("/post",isLoggedIn,function(req,res){
     res.render("addpost");
 });
-router.post("/edu/comunity",isLoggedIn,function(req,res){
+router.post("/comunity",isLoggedIn,function(req,res){
     let n_name = req.body.name;
     let n_image = req.body.image;
     let n_desc = req.body.desc;
@@ -40,7 +58,7 @@ router.post("/edu/comunity",isLoggedIn,function(req,res){
         };
     })
  });
- router.get("/post/:id",isLoggedIn,function(req,res){
+router.get("/post/:id",isLoggedIn,function(req,res){
     post.findById(req.params.id,function(error,idpost){
         if(error){
             console.log("error3636");      

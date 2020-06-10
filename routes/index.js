@@ -6,23 +6,8 @@ const express = require("express"),
 router.get("/",function(req,res){
     res.render("main");
 });
-router.get("/thaiquiz",function(req,res){
-    res.render("thaiquize");
-});
-router.get("/review",function(req,res){
-    res.render("reviewdepart");
-});
-router.get("/edu",isLoggedIn,function(req,res){
-    res.render("index");
-});
-router.get("/edu/comunity",isLoggedIn,function(req,res){
-    res.render("social");
-});
 
 
-router.get("/edu/quiz",isLoggedIn,function(req,res){
-     res.render("quizeonet");
-});
 
 router.get("/login",function(req,res){
     res.render("login");

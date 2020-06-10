@@ -33,8 +33,8 @@ passport.use(new passportLocal(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(indexRoutes);
-app.use(postRoutes);
+app.use("/",indexRoutes);
+app.use("/edu",postRoutes);
 
 
 
