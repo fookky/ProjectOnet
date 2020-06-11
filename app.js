@@ -3,9 +3,11 @@ const express = require("express"),
       bodyPaerser = require("body-parser"),
       passport = require("passport"),
       passportLocal = require("passport-local"),
+      flash = require('connect-flash'),
       passportLocalMongoose = require("passport-local-mongoose"),
       User = require("./models/user"),
       post = require("./models/post"),
+      seedDB = require("./seeds"),
       postRoutes = require("./routes/post"),
       indexRoutes = require("./routes/index");
 var path = require('path');
@@ -15,6 +17,8 @@ mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});
 let app = express();
 
 app.set("view engine","ejs");
+//seedDB();
+app.use(flash());
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyPaerser.urlencoded({extended:true}));
 app.use(require('express-session')({
@@ -26,6 +30,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("Error");
+    res.locals.success = req.flash("success");
     next();
 });
 

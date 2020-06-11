@@ -1,8 +1,9 @@
 const express = require("express"),
       router = express.Router(),
-      post = require("../models/post");
+      post = require("../models/post"),
+      middleware = require("../middleware");
     
-router.get("/comunity",isLoggedIn,function(req,res){
+router.get("/comunity",middleware.isLoggedIn,function(req,res){
    post.find({},function(error,allpost){
         if(error){
            console.log("error-------");
@@ -13,15 +14,15 @@ router.get("/comunity",isLoggedIn,function(req,res){
        }
 })
 });
-router.get("/",isLoggedIn,function(req,res){
+router.get("/",middleware.isLoggedIn,function(req,res){
     res.render("index");
    });
-router.get("/comunity",isLoggedIn,function(req,res){
+router.get("/comunity",middleware.isLoggedIn,function(req,res){
        res.render("social");
    });
    
    
-router.get("/quiz",isLoggedIn,function(req,res){
+router.get("/quiz",middleware.isLoggedIn,function(req,res){
         res.render("quizeonet");
    });
    router.get("/thaiquiz",function(req,res){
@@ -41,10 +42,10 @@ router.get("/review",function(req,res){
 //    })
 //});
 
-router.get("/post",isLoggedIn,function(req,res){
+router.get("/post",middleware.isLoggedIn,function(req,res){
     res.render("addpost");
 });
-router.post("/comunity",isLoggedIn,function(req,res){
+router.post("/comunity",middleware.isLoggedIn,function(req,res){
     let n_name = req.body.name;
     let n_image = req.body.image;
     let n_desc = req.body.desc;
@@ -58,7 +59,7 @@ router.post("/comunity",isLoggedIn,function(req,res){
         };
     })
  });
-router.get("/post/:id",isLoggedIn,function(req,res){
+router.get("/post/:id",middleware.isLoggedIn,function(req,res){
     post.findById(req.params.id,function(error,idpost){
         if(error){
             console.log("error3636");      
@@ -68,11 +69,6 @@ router.get("/post/:id",isLoggedIn,function(req,res){
     });
 });
 
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login")
-};
+
 
 module.exports =router;

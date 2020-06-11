@@ -1,7 +1,10 @@
+const middleware = require("../middleware");
+
 const express = require("express"),
       router = express.Router();
       passport = require("passport"),
-      User = require("../models/user");
+      User = require("../models/user"),
+      
 
 router.get("/",function(req,res){
     res.render("main");
@@ -20,6 +23,7 @@ router.post("/login",passport.authenticate("local" ,{
 
 router.get("/logout",function(req,res){
     req.logout();
+    req.flash('success','คุณออกจากระบบสำเร็จ');
     res.redirect('/');
 });
 
@@ -34,15 +38,11 @@ router.post("/signup",function(req,res){
             return res.render("signup");
         }
         passport.authenticate("local")(req,res,function(){
+            req.flash('success','ยินดีต้อนรับ ' + user.username);
             res.redirect("/edu");
         });
     });
 });
 
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login")
-};
+
 module.exports =router;

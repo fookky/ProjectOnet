@@ -114,7 +114,12 @@
            
                 </ul>
             </nav>
-      
+            <% if(error && error.length > 0){ %>
+                <%= error %>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <%= success %>
+            <% } %>
         </div>
     </header>
 <!--End nav-->
@@ -126,4 +131,5 @@
         selectElement(element  = 'nav').classList.toggle( token  = 'active');
     });
 </script>
+
 
