@@ -9,7 +9,7 @@ router.get("/comunity",middleware.isLoggedIn,function(req,res){
            console.log("error-------");
       }else{
            
-           res.render("social",{post:allpost});
+           res.render("socials/social",{post:allpost});
            
        }
 })
@@ -18,7 +18,7 @@ router.get("/",function(req,res){
     res.render("index");
    });
 router.get("/comunity",middleware.isLoggedIn,function(req,res){
-       res.render("social");
+       res.render("socials/social");
    });
    
    
@@ -32,18 +32,8 @@ router.get("/review",function(req,res){
     res.render("reviewdepart");
 });
 
-//router.get("/",middleware.isLoggedIn, function(req,res){
-//    Tarot.find({},function(error, allTarot){
-//        if(error){
-//            console.log("Error!");
-//        } else {
-//            res.render("tarots/index",{Tarot:allTarot});
-//        }
-//    })
-//});
-
 router.get("/post",middleware.isLoggedIn,function(req,res){
-    res.render("addpost");
+    res.render("socials/addpost");
 });
 router.post("/comunity",middleware.isLoggedIn,function(req,res){
     let n_name = req.body.name;
@@ -52,7 +42,7 @@ router.post("/comunity",middleware.isLoggedIn,function(req,res){
     let n_card = {name:n_name,image:n_image,desc:n_desc};
     post.create(n_card,function(error,newpost){
         if(error){
-            console.log("error!!!!");
+            console.log(error);
         }else{
              console.log("add new");
              res.redirect("/edu/comunity");
@@ -60,11 +50,11 @@ router.post("/comunity",middleware.isLoggedIn,function(req,res){
     })
  });
 router.get("/post/:id",middleware.isLoggedIn,function(req,res){
-    post.findById(req.params.id,function(error,idpost){
+    post.findById(req.params.id).populate("comments").exec(function(error,idpost){
         if(error){
             console.log("error3636");      
         }else{
-            res.render("showdetail",{post:idpost});
+            res.render("socials/showdetail",{post:idpost});
         }
     });
 });

@@ -3,7 +3,7 @@ const   mongoose = require("mongoose");
 
         let commentSchema = new mongoose.Schema({
             text : String,
-            user: String
+            username: String
         });
 
         
