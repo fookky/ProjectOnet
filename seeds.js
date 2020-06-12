@@ -1,5 +1,6 @@
 const moongoose = require("mongoose");
 const post = require("./models/post");
+const comment = require("./models/comment");
 
 const data = [
     {
@@ -29,6 +30,18 @@ function seedDB(){
                     console.log("add post error");
                 }else{
                     console.log("add post susses");
+                    comment.create({
+                        text: "eazy",
+                        username:"fookky"
+                    },function(err,comment){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            post.comments.push(comment);
+                            post.save();
+                            console.log("Create comment success");
+                        }
+                    });
                 }
             });
         });

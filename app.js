@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});
 let app = express();
 
 app.set("view engine","ejs");
-//seedDB();
+
 app.use(flash());
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyPaerser.urlencoded({extended:true}));
@@ -42,7 +42,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/",indexRoutes);
 app.use("/edu",postRoutes);
 
-
+seedDB();
 
 app.listen(3000,function(req,res){
     console.log("colection ready!");
