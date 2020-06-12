@@ -38,7 +38,7 @@ router.post("/signup",function(req,res){
             return res.render("signup");
         }
         passport.authenticate("local")(req,res,function(){
-            req.flash('success','ยินดีต้อนรับ ' + user.username);
+            req.flash('success','Welcome ' + user.username);
             res.redirect("/edu");
         });
     });

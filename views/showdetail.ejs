@@ -5,10 +5,32 @@
     <div class="socialshow">
     <form>
     <h1 style="font-size: 50px;font-weight: bolder;"><center><%= post.name %></center></h1>
-    <center><img src=<%= post.image %>  style="width:450px; height:450px;" ></center>
+    
+    <center><img id="myImg"  src=<%= post.image %>   width="300" height="350"></center>
+
+<div id="myModal" class="modal">
+  <span class="closes">&times;</span>
+  <img class="modal-content" id="img01">
+</div>
+
+    <!-- <center><img src=<%= post.image %> id="img01" width="300" height="200"></center> -->
     <h3 style="font-size: 20px;"><center><%= post.desc %></center></h3>  
     </form>
 </div>
 </section>
+<script>
+    var modal = document.getElementById('myModal');
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    }
+    var span = document.getElementsByClassName("closes")[0];
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+    </script>
 
 <%- include("partials/footer") %>

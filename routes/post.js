@@ -14,7 +14,7 @@ router.get("/comunity",middleware.isLoggedIn,function(req,res){
        }
 })
 });
-router.get("/",middleware.isLoggedIn,function(req,res){
+router.get("/",function(req,res){
     res.render("index");
    });
 router.get("/comunity",middleware.isLoggedIn,function(req,res){
