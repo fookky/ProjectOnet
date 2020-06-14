@@ -9,7 +9,8 @@ const express = require("express"),
       post = require("./models/post"),
       seedDB = require("./seeds"),
       postRoutes = require("./routes/post"),
-      indexRoutes = require("./routes/index");
+      indexRoutes = require("./routes/index"),
+      commentsRoutes = require("./routes/comments");
 var path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});
@@ -41,6 +42,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/",indexRoutes);
 app.use("/edu",postRoutes);
+app.use("/edu/post/:id/comment",commentsRoutes);
 
 seedDB();
 

@@ -13,13 +13,27 @@
       </div>
 
     <h3 style="font-size: 20px;"><center><%= post.desc %></center></h3>  
-
     </form>
-    
 </div>
+<center>
+<button class="but but1">
+<a href="/edu/post/<%= post._id %>/comment/new" >Add new comment</a>
+</button>
+</center>
+
+
+<br>
 <% post.comments.forEach(function(comment){ %>
-  <p><strong><%= comment.username %></strong> - <%= comment.text %></p>
+  <br>
+  <div class="commentshow">
+  <form>
+  <p style="font-size: 18px;"><strong><%= comment.username %></strong> - <%= comment.text %></p>
+</form>
+</div>
 <% }) %>
+
+
+
 </section>
 <script>
     var modal = document.getElementById('myModal');
