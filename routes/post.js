@@ -72,7 +72,7 @@ router.get('/post/:post_id/edit', middleware.postOwner,
   function(req, res) {
     post.findById(req.params.post_id, function(err, foundpost) {
       if (err) {
-        req.flash('error', 'Travel Diary was not found');
+        req.flash('error', 'Post was not found');
         res.redirect('back');
       } else {
         res.render('socials/edit', {
@@ -90,10 +90,10 @@ router.put('/post/:post_id', middleware.postOwner,
     post.findByIdAndUpdate(req.params.post_id, req.body.post,
       function(err) {
         if (err) {
-          req.flash('error', 'Travel Diary was not found');
+          req.flash('error', 'Post was not found');
           res.redirect('back');
         } else {
-          req.flash('success', 'Travel Diary was updated');
+          req.flash('success', 'Post was updated');
           res.redirect('/edu/post/' + req.params.post_id);
         }
       }
@@ -106,11 +106,11 @@ router.delete('/post/:post_id', middleware.postOwner,
   function(req, res) {
     post.findByIdAndRemove(req.params.post_id, function(err) {
       if (err) {
-        req.flash('error', 'Travel Diary was not found');
+        req.flash('error', 'Post was not found');
         res.redirect('back');
       } else {
-        req.flash('error', 'Travel Diary was deleted');
-        res.redirect('/post');
+        req.flash('error', 'Post was deleted');
+        res.redirect('/edu/comunity');
       }
     });
   }

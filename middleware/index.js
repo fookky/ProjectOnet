@@ -8,7 +8,7 @@ middlewareObj.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    req.flash('error', 'Kindly Log in First');
+    req.flash('error', ' Log in First');
     res.redirect('/login');
   }
 };
@@ -17,7 +17,7 @@ middlewareObj.postOwner = function(req, res, next) {
   if (req.isAuthenticated()) {
     post.findById(req.params.post_id, function(err, foundpost) {
       if (err) {
-        req.flash('error', 'Travel diary was not found');
+        req.flash('error', 'Post was not found');
         res.redirect('back');
       } else if (foundpost.author.id.equals(req.user._id)) {
         next();
@@ -27,7 +27,7 @@ middlewareObj.postOwner = function(req, res, next) {
       }
     });
   } else {
-    req.flash('error', 'Kindly Log in First');
+    req.flash('error', ' Log in First');
     res.redirect('/login');
   }
 };
@@ -46,7 +46,7 @@ middlewareObj.CommentOwner = function(req, res, next) {
         }
       });
     } else {
-      req.flash('error', 'Kindly Log in First');
+      req.flash('error', ' Log in First');
       res.redirect('/login');
     }
   };
