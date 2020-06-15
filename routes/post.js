@@ -39,8 +39,17 @@ router.post("/comunity",middleware.isLoggedIn,function(req,res){
     let n_name = req.body.name;
     let n_image = req.body.image;
     let n_desc = req.body.desc;
-    let n_card = {name:n_name,image:n_image,desc:n_desc};
-    post.create(n_card,function(error,newpost){
+    let author = {
+        id: req.user._id,
+        username: req.user.username
+      };
+    let newsposts = {
+         name:n_name,
+         image:n_image,
+         desc:n_desc,
+        author: author
+      };
+    post.create(newsposts,function(error,newpost){
         if(error){
             console.log(error);
         }else{
@@ -49,8 +58,8 @@ router.post("/comunity",middleware.isLoggedIn,function(req,res){
         };
     })
  });
-router.get("/post/:id",middleware.isLoggedIn,function(req,res){
-    post.findById(req.params.id).populate("comments").exec(function(error,idpost){
+router.get("/post/:post_id",middleware.isLoggedIn,function(req,res){
+    post.findById(req.params.post_id).populate("comments").exec(function(error,idpost){
         if(error){
             console.log("error3636");      
         }else{
@@ -58,6 +67,54 @@ router.get("/post/:id",middleware.isLoggedIn,function(req,res){
         }
     });
 });
+
+router.get('/post/:post_id/edit', middleware.postOwner,
+  function(req, res) {
+    post.findById(req.params.post_id, function(err, foundpost) {
+      if (err) {
+        req.flash('error', 'Travel Diary was not found');
+        res.redirect('back');
+      } else {
+        res.render('socials/edit', {
+          post: foundpost
+        });
+      }
+    });
+  }
+);
+
+
+
+router.put('/post/:post_id', middleware.postOwner,
+  function(req, res) {
+    post.findByIdAndUpdate(req.params.post_id, req.body.post,
+      function(err) {
+        if (err) {
+          req.flash('error', 'Travel Diary was not found');
+          res.redirect('back');
+        } else {
+          req.flash('success', 'Travel Diary was updated');
+          res.redirect('/edu/post/' + req.params.post_id);
+        }
+      }
+    );
+  }
+);
+
+
+router.delete('/post/:post_id', middleware.postOwner,
+  function(req, res) {
+    post.findByIdAndRemove(req.params.post_id, function(err) {
+      if (err) {
+        req.flash('error', 'Travel Diary was not found');
+        res.redirect('back');
+      } else {
+        req.flash('error', 'Travel Diary was deleted');
+        res.redirect('/post');
+      }
+    });
+  }
+);
 
 
 

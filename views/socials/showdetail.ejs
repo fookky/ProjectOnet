@@ -13,6 +13,16 @@
       </div>
 
     <h3 style="font-size: 20px;"><center><%= post.desc %></center></h3>  
+    <p>
+      <em>Submitted By:
+        <%= post.author.username %></em>
+    </p>
+    <% if (currentUser && post.author.id.equals(currentUser._id)) { %>
+      <form action="/edu/post/<%= post._id %>?_method=DELETE" method="POST">
+        <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/edit">แก้ไข</a></button>
+        <button  style="width: 30; height: 20; color: red;" >ลบ</button>
+      </form>
+    <% } %>
     </form>
 </div>
 <center>
@@ -27,7 +37,13 @@
   <br>
   <div class="commentshow">
   <form>
-  <p style="font-size: 18px;"><strong><%= comment.username %></strong> - <%= comment.text %></p>
+  <p style="font-size: 18px;"><strong><%= comment.author.username %></strong> - <%= comment.text %></p><hr>
+  <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+    <form action="/edu/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
+      <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/comment/<%= comment._id %>/edit">แก้ไข</a></button>
+      <button  style="width: 30; height: 20; color: red;" >ลบ</button>
+    </form>
+  <% } %>
 </form>
 </div>
 <% }) %>

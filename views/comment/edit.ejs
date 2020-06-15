@@ -5,13 +5,12 @@
   <h3 style="font-size: 25px;color: white;text-align: center;">มาแสดงความคิดเห็นกันเถอะ</h3>
   <br><br>
   <div class="social">
-    <form action="edu/post/<%= post._id %>/comment"  method="POST">
+    <form action="/edu/post/<%= post_id%>/comment/<%= comment._id %>?_method=PUT" method="POST">
       <label for="fname">comment</label>
-      <input type="text" id="fname"name="comment[text]" placeholder="comment">
+      <input type="text" id="fname"name="comment[text]" placeholder="comment" value="<%= comment.text %>">
 <!--   
       <label for="lname">Username</label>
       <input type="text" id="lname" name="comment[username]" placeholder="your Username">
-       <button  class="subbtn" ><a href="/edu/post">สร้างกระทู้</a></button>
    -->
     
       <input type="submit" value="Submit">

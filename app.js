@@ -3,6 +3,7 @@ const express = require("express"),
       bodyPaerser = require("body-parser"),
       passport = require("passport"),
       passportLocal = require("passport-local"),
+      methodOverride = require('method-override'),
       flash = require('connect-flash'),
       passportLocalMongoose = require("passport-local-mongoose"),
       User = require("./models/user"),
@@ -20,6 +21,7 @@ let app = express();
 app.set("view engine","ejs");
 
 app.use(flash());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyPaerser.urlencoded({extended:true}));
 app.use(require('express-session')({
@@ -33,6 +35,7 @@ app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -42,9 +45,9 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/",indexRoutes);
 app.use("/edu",postRoutes);
-app.use("/edu/post/:id/comment",commentsRoutes);
+app.use("/edu/post/:post_id/comment",commentsRoutes);
 
-seedDB();
+//seedDB();
 
 app.listen(3000,function(req,res){
     console.log("colection ready!");
