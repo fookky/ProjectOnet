@@ -12,6 +12,7 @@ const express = require("express"),
       postRoutes = require("./routes/post"),
       indexRoutes = require("./routes/index"),
       commentsRoutes = require("./routes/comments");
+  
 var path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});

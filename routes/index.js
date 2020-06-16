@@ -1,4 +1,5 @@
 const middleware = require("../middleware");
+const user = require("../models/user");
 
 const express = require("express"),
       router = express.Router();
@@ -9,8 +10,16 @@ const express = require("express"),
 router.get("/",function(req,res){
     res.render("main");
 });
+router.get("/admin",function(req,res){
+    if(User.isAdmin = true){
+    res.render("admin");
+    }
+ });
 
 
+router.get("/profile",function(req,res){
+    res.render("profile");
+});
 
 router.get("/login",function(req,res){
     res.render("login");
@@ -32,6 +41,10 @@ router.get("/signup",function(req,res){
     res.render("signup");
 });
 router.post("/signup",function(req,res){
+    if(req.body.adminCode === "secret123"){
+        User.isAdmin = true;
+        res.redirect("/admin");
+    }
     User.register(new User({username:req.body.username,firstname: req.body.firstname,Surname:req.body.Surname,mail:req.body.mail,School:req.body.School,Level:req.body.Level }),req.body.password, function(err,user){
         if(err){
             console.log(err);

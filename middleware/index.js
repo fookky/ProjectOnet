@@ -1,3 +1,5 @@
+const user = require('../models/user');
+
 const post = require('../models/post'),
   comment = require('../models/comment'),
   errMessage = 'You can only make changes to the experiences which you added';
@@ -50,6 +52,16 @@ middlewareObj.CommentOwner = function(req, res, next) {
       res.redirect('/login');
     }
   };
+
+  // middlewareObj.LoggedInadmin = function(req, res, next) {
+  //   if(req.isAuthenticated())  {
+  //     user.isAdmin = true;
+  //     res.redirect("/admin")
+  //   } else {
+  //     req.flash('error', 'NO!!!!');
+  //     res.redirect('/edu');
+  //   }
+  // };
 
 
 module.exports = middlewareObj;

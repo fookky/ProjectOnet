@@ -96,6 +96,7 @@
                     <li>
                         <a class="actives" href="/edu/comunity">ชุมชน</a>
                     </li>
+                    
                    <% if (!currentUser){%>
                     <li class ="move-right btn">
                         <a href="/login"><center>LOGIN</center></a>
@@ -105,7 +106,7 @@
                     </li>
                 <% } else{ %>
                     <li class ="move-right btn">
-                        <a href="#"> <center><%= currentUser.username%></center></a>
+                        <a href="/profile"> <center><%= currentUser.username%></center></a>
                     </li>
                     <li class ="move-rightsecond btn">
                         <a href="/logout"><center>LOGOUT</center></a>
