@@ -10,11 +10,7 @@ const express = require("express"),
 router.get("/",function(req,res){
     res.render("main");
 });
-router.get("/admin",function(req,res){
-    if(User.isAdmin = true){
-    res.render("admin");
-    }
- });
+
 
 
 router.get("/profile",function(req,res){

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 75%;
+          background-color: white;
+          padding: 20px;
+         
+          margin: auto;
+        }
+        
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {background-color:gray}
+        </style>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minium-scale=1.0"> 
+    <meta http-equiv= "x-ua-compatible" content = "ie-edge">
+    <title>Multi Level Dropdown</title>
+    
+    <link href="http://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/project1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta http-equiv="Content-Language" content="th">
+    <meta http-equiv="content-Type" content="text/html; charset=window-874">
+    <meta http-equiv="content-Type" content="text/html; charset=tis-620">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/"> 
+   
+ 
+</head>
+<body class="hero">
+
+    <header>
+        <div class="container">
+            <nav > 
+                <div class="menu-icons">
+                    <i class="icon ion-md-menu"></i>
+                    <i class="icon ion-md-close"></i>
+                </div>
+                <a href="project1.html" class="logo">
+                    <i class="fas fa-book"></i>
+                </a>
+                <ul class="nav-list">
+                    <li>
+                        <a class="actives" href="/edu">Home</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu">Quiz
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu">คลังบทเรียน
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a class="actives" href="/edu">รายละเอียดการสอบเข้า
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="#">รีวิวคณะ</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/postmange">ชุมชน</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/user">สมาชิก</a>
+                    </li>
+                    
+                   <% if (!currentUser){%>
+                    <li class ="move-right btn">
+                        <a href="/login"><center>LOGIN</center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/signup"><center>REGISTER</center></a>
+                    </li>
+                <% } else{ %>
+                    <li class ="move-right btn">
+                        <a href="/profile"> <center><%= currentUser.username%></center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/logout"><center>LOGOUT</center></a>
+                    </li>
+              <%  } %>
+           
+                </ul>
+            </nav>
+            <% if(error && error.length > 0){ %>
+                <div class="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert success">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+    </header>
+
+
+<script>
+    const selectElement = (element) => document.querySelector(element);
+    selectElement(element = '.menu-icon'),addEventListener(type ='click', listener = () => {
+        selectElement(element  = 'nav').classList.toggle( token  = 'active');
+    });
+</script>
+
+<br><br><br><br>
+
+
+
+<br><br><br><br><br>
+<section style=" width: 100%; height: 100vh; background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),url(https://cdn.marketingoops.com/wp-content/uploads/2014/12/education-booksOK.jpg);background-size: cover;">
+    <br><br><br><br>
+    <div class="socialshow">
+    <form>
+        
+    <h1 style="font-size: 50px;font-weight: bolder;"><center><%= post.name %></center></h1>
+    
+    <center><img id="myImg"  src=<%= post.image %>   width="300" height="350"></center>
+      <div id="myModal" class="modal">
+      <span class="closes">&times;</span>
+      <img class="modal-content" id="img01">
+      </div>
+
+    <h3 style="font-size: 20px;"><center><%= post.desc %></center></h3>  
+    <p>
+      <em>สร้างโดย:
+        <%= post.author.username %></em>
+    </p>
+   
+    </form>
+    <% if (currentUser && post.author.id.equals(currentUser._id)) { %>
+      
+      <form action="/edu/post/<%= post._id %>?_method=DELETE" method="POST">
+        <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/edit">แก้ไข</a></button>
+        <button  style="width: 30; height: 20; color: red;" >ลบ</button>
+      </form>
+    <% } %>
+</div>
+<center>
+<button class="but but1">
+<a href="/edu/post/<%= post._id %>/comment/new" >Add new comment</a>
+</button>
+</center>
+
+
+<br>
+<% post.comments.forEach(function(comment){ %>
+  <br>
+  <div class="commentshow">
+  <form>
+  <p style="font-size: 18px;"><strong><%= comment.author.username %></strong> - <%= comment.text %></p><hr>
+ 
+</form>
+<% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+  <form action="/edu/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
+    <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/comment/<%= comment._id %>/edit">แก้ไข</a></button>
+    <button  style="width: 30; height: 20; color: red;" >ลบ</button>
+  </form>
+<% } %>
+</div>
+<% }) %>
+
+
+
+</section>
+<script>
+    var modal = document.getElementById('myModal');
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    }
+    var span = document.getElementsByClassName("closes")[0];
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+    </script>
+    
+
+
+
+</body>
+</html>
+
+
+

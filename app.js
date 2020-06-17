@@ -10,6 +10,7 @@ const express = require("express"),
       post = require("./models/post"),
       seedDB = require("./seeds"),
       postRoutes = require("./routes/post"),
+      adminRoutes = require("./routes/admin"),
       indexRoutes = require("./routes/index"),
       commentsRoutes = require("./routes/comments");
   
@@ -45,10 +46,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/",indexRoutes);
+app.use("/admin",adminRoutes);
 app.use("/edu",postRoutes);
 app.use("/edu/post/:post_id/comment",commentsRoutes);
 
-//seedDB();
+seedDB();
 
 app.listen(3000,function(req,res){
     console.log("colection ready!");
