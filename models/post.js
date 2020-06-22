@@ -5,6 +5,11 @@ const   mongoose = require("mongoose"),
             name : String,
             image: String,
             desc : String,
+            createdAt: { type: Date, default: Date.now },
+            type: String,
+            // fact: String,
+            // numFact: Number,
+            // totalVotes: Number,
             author: {
                 id: {
                   type: mongoose.Schema.Types.ObjectId,

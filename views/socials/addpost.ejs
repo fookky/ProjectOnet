@@ -5,15 +5,27 @@
   <h3 style="font-size: 25px;color: white;text-align: center;">มาสร้างกระทู้กันเถอะ</h3>
   <br><br>
   <div class="social">
-    <form action="/edu/comunity"  method="POST">
+    <form action="/edu/comunity"  method="POST" enctype="multipart/form-data">
       <label for="fname">Name</label>
       <input type="text" id="fname"name="name" placeholder="Name">
   
-      <label for="lname">ImageURL</label>
-      <input type="text" id="lname" name="image" placeholder="ImageURL">
-  
+      <label for="eduImageupload">ImageURL</label>
+      <hr>
+      <input type="file" id="lname" name="image" accept="image/*">
+  <hr>
       <label for="lname">detail</label>
       <input type="text" id="lname" name="desc" placeholder="detail">
+
+      <label for="lname">กลุ่มวิชา</label>
+      <select class="w3-select w3-border" name="type" name="option">
+        <option value="" name="type" disabled selected>เลือกกลุ่มวิชา</option>
+        <option value="ภาษาไทย" name="type">ภาษาไทย</option>
+        <option value="คณิตศาสตร์" name="type">คณิตศาสตร์</option>
+        <option value="วิทยาศาสตร์" name="type">วิทยาศาสตร์</option>
+        <option value="สังคมศึกษา" name="type">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
+        <option value="ภาษาอังกฤษ" name="type">ภาษาอังกฤษ</option>
+
+      </select>
     
       <input type="submit" value="Submit">
     </form>

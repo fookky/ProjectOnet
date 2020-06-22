@@ -5,15 +5,17 @@
   <h3 style="font-size: 25px;color: white;text-align: center;">แก้ไขกระทู้</h3>
   <br><br>
   <div class="social">
-    <form action="/edu/post/<%= post._id %>?_method=PUT" method="POST">
+    <form action="/edu/post/<%= post._id %>?_method=PUT" method="POST" enctype='multipart/form-data'>
       <label for="fname">Name</label>
-      <input type="text" id="fname"name="post[name]" placeholder="Name" value="<%= post.name %>">
+      <input type="text" id="fname"name="name" placeholder="Name" value="<%= post.name %>">
   
-      <label for="lname">ImageURL</label>
-      <input type="text" id="lname" name="post[image]" placeholder="ImageURL" value="<%= post.image %>">
+      <label for="eduImageupload">ImageURL</label>
+      <hr>
+      <input type="file" id="lname" name="image" accept="image/*">
+  <hr>
   
       <label for="lname">detail</label>
-      <input type="text" id="lname" name="post[desc]" placeholder="detail" value="<%= post.desc %>">
+      <input type="text" id="lname" name="desc" placeholder="detail" value="<%= post.desc %>">
     
       <input type="submit" value="Submit">
     </form>

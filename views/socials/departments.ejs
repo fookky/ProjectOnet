@@ -1,0 +1,41 @@
+<%- include("../partials/header") %>
+<br><br><br><br><br><br><br><br><br>
+<section >
+    <div class="leftbox">
+      <div class="content">
+        <h1>คลังความรู้</h1>
+        <p>แชร์ความรู้้กี่ยวกับโอเน็ต</p>
+      </div>
+      <form action="/edu/department method="GET">
+        <center><input type="text" name="search" placeholder="Search.."></center>
+      </form>
+    </div>
+    
+    <% if (learning = null){ %>
+      <h3><%= learning %></h3>
+     <% } %>
+    <div class="events">
+      <%if (currentUser == null){ %>
+        <%var toLogin = true } %>
+      <% department.forEach(function(ln){ %>
+        <ul class="u">
+          <li class="l">
+            <div class="time">
+                <img id="myImg"  src=<%= "../uploads/"+ ln.image %>  width="200" height="150" >
+          </div>
+          <div class="detail">
+            <h3 class="h"><%= ln.name %></h3>
+            <p  style="font-size: 18;" class="para"><%= ln.desc %></p>
+            <a href="/edu/departments/<%= ln._id %>" class="aherf">view detail</a>
+           <br><br><br><br><br><br><br><br><br>
+
+           
+          </div>
+          <div style="clear: both;"></div>
+        </li>
+      </ul>
+          <% }); %> 
+    </div>
+ 
+  </section>
+<%- include("../partials/footer") %>

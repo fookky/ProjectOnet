@@ -19,9 +19,6 @@ html{
 
 body{
    /* overflow: hidden;*/
-    margin:0 ;
-    
-    padding: 0;
     font-family: 'Fira Sans' , sans-serif;
     
 }
@@ -429,13 +426,13 @@ li.Rmove-right{
     width:100%;
     height: 100%;
     float: left;
-    padding: 50px;
+    padding: 0 50px 0 50px;
     box-sizing: border-box;
   }
   section .leftbox .content{
     color: #fff;
     background: rgba(0, 0, 0, .5);
-    padding: 40px;
+    padding: 50px;
     transition: .5s;
   }
   section .leftbox .content:hover{
@@ -454,7 +451,7 @@ li.Rmove-right{
   section .events{
     position: absolute;
     width: 50%;
-    height: 100%;
+    height: 75%;
     background:transparent;
     float: right;
     box-sizing: border-box;
@@ -464,7 +461,7 @@ li.Rmove-right{
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
-    padding: 40px;
+    padding: 0 0 0 50px;
     box-sizing: border-box;
   }
   section .events .u .l{
@@ -522,7 +519,7 @@ li.Rmove-right{
     padding: 0;
     font-size: 16px;
   }
-  section .events .u .l .detail a{
+  section .events .u .l .detail .aherf{
     display: block;
     text-decoration: none;
     padding: 10px 15px;
@@ -532,7 +529,7 @@ li.Rmove-right{
     transition: .5s;
     float: right;
   }
-  section .events .u .l .detail a:hover{
+  section .events .u .l .detail .aherf:hover{
     background: #e91e63;
     color: #fff;
     border-color: #e91e63;
@@ -588,7 +585,7 @@ li.Rmove-right{
       padding-left: 100px;
       background: transparent;
     }
-    section .events .u .l .detail a{
+    section .events .u .l .detail .aherf{
       padding: 5px 10px;
     }
   }
@@ -865,3 +862,10 @@ li.Rmove-right{
   button:hover {
     opacity: 0.7;
   }
+
+
+  /* department */
+
+  
+  
+  

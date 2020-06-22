@@ -1,0 +1,90 @@
+<%- include("../partials/header") %><style> 
+  input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 75%;
+  }
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  float: right;
+}
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+</style>
+
+<br><br><br><br><br><br><br>
+
+<section >
+    <div class="leftbox">
+      <div class="content">
+        <h1>คลังความรู้</h1>
+        <p>แชร์ความรู้้กี่ยวกับโอเน็ต</p>
+      </div>
+      <form action="/edu/learning" method="GET">
+        <center><input type="text" name="search" placeholder="Search.."></center>
+      </form>
+    </div>
+    
+    <% if (learning = null){ %>
+      <h3><%= learning %></h3>
+     <% } %>
+    <div class="events">
+      <%if (currentUser == null){ %>
+        <%var toLogin = true } %>
+      <% learn.forEach(function(ln){ %>
+        <ul class="u">
+          <li class="l">
+            <div class="time">
+            <h2><span><%= moment(ln.createdAt).fromNow() %></span></h2>
+          </div>
+          <div class="detail">
+            <h3 class="h"><%= ln.name %></h3>
+            <p  style="font-size: 18;" class="para"><%= ln.desc %></p>
+            <a href="/edu/learning/<%= ln._id %>" class="aherf">view detail</a>
+           <br><br><br><br><br><br><br><br><br>
+
+           
+          </div>
+          <div style="clear: both;"></div>
+        </li>
+      </ul>
+          <% }); %> 
+    </div>
+ 
+  </section>
+
+
+
+<%- include("../partials/footer") %>

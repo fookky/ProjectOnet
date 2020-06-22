@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 75%;
+          background-color: white;
+          padding: 20px;
+         
+          margin: auto;
+        }
+        
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {background-color:gray}
+        </style>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minium-scale=1.0"> 
+    <meta http-equiv= "x-ua-compatible" content = "ie-edge">
+    <title>Multi Level Dropdown</title>
+    
+    <link href="http://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/project1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta http-equiv="Content-Language" content="th">
+    <meta http-equiv="content-Type" content="text/html; charset=window-874">
+    <meta http-equiv="content-Type" content="text/html; charset=tis-620">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/"> 
+   
+ 
+</head>
+<body class="hero">
+
+    <header>
+        <div class="container">
+            <nav > 
+                <div class="menu-icons">
+                    <i class="icon ion-md-menu"></i>
+                    <i class="icon ion-md-close"></i>
+                </div>
+                <a href="project1.html" class="logo">
+                    <i class="fas fa-book"></i>
+                </a>
+                <ul class="nav-list">
+                    <li>
+                        <a class="actives" href="/edu">Home</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu">Quiz
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu">คลังบทเรียน
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a class="actives" href="/edu">รายละเอียดการสอบเข้า
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="#">รีวิวคณะ</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/postmange">ชุมชน</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/user">สมาชิก</a>
+                    </li>
+                    
+                   <% if (!currentUser){%>
+                    <li class ="move-right btn">
+                        <a href="/login"><center>LOGIN</center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/signup"><center>REGISTER</center></a>
+                    </li>
+                <% } else{ %>
+                    <li class ="move-right btn">
+                        <a href="/profile"> <center><%= currentUser.username%></center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/logout"><center>LOGOUT</center></a>
+                    </li>
+              <%  } %>
+           
+                </ul>
+            </nav>
+            <% if(error && error.length > 0){ %>
+                <div class="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert success">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+    </header>
+
+
+<script>
+    const selectElement = (element) => document.querySelector(element);
+    selectElement(element = '.menu-icon'),addEventListener(type ='click', listener = () => {
+        selectElement(element  = 'nav').classList.toggle( token  = 'active');
+    });
+</script>
+
+<br><br><br><br><br><br><br><br><br>
+
+
+
+
+   <center> <h1 style="color: #ddd; ">การจัดการคลังข้อมูล</h1></center>
+    <center> <p style="color: #ddd; ">จัดการคลังข้อมูลทั้งหมดเว็บไซต์</p></center>
+    <center> <a href="/admin/department/add">เพิ่มหัวข้อการเรียนรู้</a></center>
+    <br><br>
+<table>
+  <tr>
+    <th>id</th>
+    <th>ชื่อเรื่อง</th>
+    <th>รายละเอียด</th>
+    <th>การจัดการ </th>
+  </tr>
+  <% department.forEach(function(ln){ %>
+  <tr>
+    <td><%= ln._id %></td>
+    <td><%= ln.name %></td>
+    <td><%= ln.desc %></td>
+
+    <td><a href="/admin/department/delete/<%= ln._id %>">DELETE</a> ||
+        <a href="/admin/department/<%= ln._id %>/edit">edit</a>
+    </td>
+   
+  </tr>
+  <% }) %>
+</table>
+        
+    
+
+
+
+</body>
+</html>
+
+
+

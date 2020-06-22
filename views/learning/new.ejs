@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minium-scale=1.0"> 
+    <meta http-equiv= "x-ua-compatible" content = "ie-edge">
+    <title>Multi Level Dropdown</title>
+    <!--Ion icons-->
+    <link href="http://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/project1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta http-equiv="Content-Language" content="th">
+    <meta http-equiv="content-Type" content="text/html; charset=window-874">
+    <meta http-equiv="content-Type" content="text/html; charset=tis-620">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/"> 
+    <style>
+ 
+        .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+        
+        .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+          .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+        </style>
+ 
+</head>
+<body class="hero">
+
+    <header>
+        <div class="container">
+            <nav > 
+                <div class="menu-icons">
+                    <i class="icon ion-md-menu"></i>
+                    <i class="icon ion-md-close"></i>
+                </div>
+                <a href="project1.html" class="logo">
+                    <i class="fas fa-book"></i>
+                </a>
+                <ul class="nav-list">
+                    <li>
+                        <a class="actives" href="/admin">Home</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/quiz">Quiz
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/learn">คลังบทเรียน
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a class="actives" href="/edu">รายละเอียดการสอบเข้า
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/department">รีวิวคณะ</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/postmange">ชุมชน</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/admin/user">สมาชิก</a>
+                    </li>
+                    
+                   <% if (!currentUser){%>
+                    <li class ="move-right btn">
+                        <a href="/login"><center>LOGIN</center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/signup"><center>REGISTER</center></a>
+                    </li>
+                <% } else{ %>
+                    <li class ="move-right btn">
+                        <a href="/profile"> <center><%= currentUser.username%></center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/logout"><center>LOGOUT</center></a>
+                    </li>
+              <%  } %>
+           
+                </ul>
+            </nav>
+            <% if(error && error.length > 0){ %>
+                <div class="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert success">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+    </header>
+<!--End nav-->
+<!--Hero-->
+
+<script>
+    const selectElement = (element) => document.querySelector(element);
+    selectElement(element = '.menu-icon'),addEventListener(type ='click', listener = () => {
+        selectElement(element  = 'nav').classList.toggle( token  = 'active');
+    });
+</script>
+
+<br><br><br><br><br><br>
+<section class="hero">
+ <br><br> <br><br> <br><br>
+  <h3 style="font-size: 25px;color: white;text-align: center;">สร้างคลังความรู้</h3>
+  <br><br>
+  <div class="social">
+    <form action="/admin/department"  method="POST" enctype="multipart/form-data">
+      <label for="fname">Name</label>
+      <input type="text" id="fname"name="name" placeholder="Name">
+  
+      <label for="eduImageupload">ImageURL</label>
+      <hr>
+      <input type="file" id="lname" name="image" accept="image/*">
+  <hr>
+      <label for="lname">detail</label>
+      <input type="text" id="lname" name="desc" placeholder="detail">
+      
+      <div class="row">
+        <div class="col-25">
+            <label for="lname">รายละเอียดเชิงลึก</label>
+        </div>
+        <div class="col-75">
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        </div>
+      </div>
+
+      <label for="lname">กลุ่มวิชา</label>
+      <select class="w3-select w3-border" name="type" >
+        <option value="" name="type" disabled selected>เลือกกลุ่มวิชา</option>
+        <option value="ภาษาไทย" name="type">ภาษาไทย</option>
+        <option value="คณิตศาสตร์" name="type">คณิตศาสตร์</option>
+        <option value="วิทยาศาสตร์" name="type">วิทยาศาสตร์</option>
+        <option value="สังคมศึกษา" name="type">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
+        <option value="ภาษาอังกฤษ" name="type">ภาษาอังกฤษ</option>
+
+      </select>
+    
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</section>
+
+
+</body>
+</html>
