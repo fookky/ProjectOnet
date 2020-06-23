@@ -15,35 +15,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <base href="/"> 
-    <style>
- 
-        .col-25 {
-          float: left;
-          width: 25%;
-          margin-top: 6px;
-        }
-        
-        .col-75 {
-          float: left;
-          width: 75%;
-          margin-top: 6px;
-        }
-        
-        /* Clear floats after the columns */
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
-        
-        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .col-25, .col-75, input[type=submit] {
-            width: 100%;
-            margin-top: 0;
-          }
-        }
-        </style>
+   
  
 </head>
 <body class="hero">
@@ -68,7 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="actives" href="/admin/learn">คลังบทเรียน
+                        <a class="actives" href="/edu">คลังบทเรียน
                             <i class="icon ion-md-arrow-dropdown"></i>
                         </a>
                     </li>
@@ -79,7 +51,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="actives" href="/admin/department">รีวิวคณะ</a>
+                        <a class="actives" href="#">รีวิวคณะ</a>
                     </li>
                     <li>
                         <a class="actives" href="/admin/postmange">ชุมชน</a>
@@ -127,49 +99,38 @@
         selectElement(element  = 'nav').classList.toggle( token  = 'active');
     });
 </script>
-
-<br><br><br><br><br><br>
-<section class="hero">
- <br><br> <br><br> <br><br>
-  <h3 style="font-size: 25px;color: white;text-align: center;">สร้างคลังความรู้</h3>
-  <br><br>
-  <div class="social">
-    <form action="/admin/learn"  method="POST" enctype="multipart/form-data">
-      <label for="fname">Name</label>
-      <input type="text" id="fname"name="name" placeholder="Name">
-  
-      <label for="eduImageupload">ImageURL</label>
-      <hr>
-      <input type="file" id="lname" name="image" accept="image/*">
-  <hr>
-      <label for="lname">detail</label>
-      <input type="text" id="lname" name="desc" placeholder="detail">
+<br><br><br><br><br><br><br><br><br><br><br>
+<div class="social">
+    <form>
       
-      <div class="row">
-        <div class="col-25">
-            <label for="lname">รายละเอียดเชิงลึก</label>
-        </div>
-        <div class="col-75">
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-        </div>
-      </div>
-
-      <label for="lname">กลุ่มวิชา</label>
-      <select class="w3-select w3-border" name="type" >
-        <option value="" name="type" disabled selected>เลือกกลุ่มวิชา</option>
-        <option value="ภาษาไทย" name="type">ภาษาไทย</option>
-        <option value="คณิตศาสตร์" name="type">คณิตศาสตร์</option>
-        <option value="วิทยาศาสตร์" name="type">วิทยาศาสตร์</option>
-        <option value="สังคมศึกษา" name="type">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
-        <option value="ภาษาอังกฤษ" name="type">ภาษาอังกฤษ</option>
-
-      </select>
-    
-      <input type="submit" value="Submit">
+      <br>
+      <button  class="subbtn" ><a href="/admin/quiz/view/<%= quizquestion._id %>/createquestion/new">สร้างกระทู้</a></button>
     </form>
-  </div>
-</section>
+    </div>
+    <div class="social">
+        <% quiztopic.quizquestions.forEach(function(aa){ %>
+            <form  method="post">
+                
+        </br>
+        <p style='font-size:30px ;text-align: left;font: bold;' ><input type="radio" name="" value="NaN" checked /><%=  aa.quizquestions.question %> </p>
+                                                          
+            <p style='font-size:20px;text-align: left;'  > <input type="radio" name="" value="<%= aa.quizquestions.op1  %>"><%= aa.quizquestions.op1  %> </p>
+            <p style='font-size:20px;text-align: left;' > <input type="radio" name="" value="<%= aa.quizquestions.op2  %>"><%= aa.quizquestions.op2  %> </p>
+            <p style='font-size:20px;text-align: left;' > <input type="radio" name="" value="<%= aa.quizquestions.op3  %>"><%= aa.quizquestions.op3  %> </p>
+            <p style='font-size:20px;text-align: left;' > <input type="radio" name="" value="<%= aa.quizquestions.op4  %>"><%= aa.quizquestions.op4  %> </p>
+        </form> 
+            <% }) %>
+            <center><input type="submit"  value="Submit" class="btn btn-danger"></center>
+          </br></br></br></br>
+   
+    </div>
 
+
+
+        
+    
+
+</section>
 
 </body>
 </html>

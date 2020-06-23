@@ -74,13 +74,15 @@
           <div class="detail">
             <h3 class="h"><%= ps.name %></h3>
             <p  style="font-size: 18;" class="para"><%= ps.desc %></p>
-            <a href="/edu/post/<%= ps._id %>" class="aherf">view detail</a>
-           <br><br><br><br><br><br><br><br><br>
-            <%if (ps.type != null){ %>
+          
+           <a href="/edu/post/<%= ps._id %>" class="aherf"  >view detail</a>
+  
+            <br><br><br><br><br><br><br><br><br> 
+           <%if (ps.type != null){ %>
               <% ps.type.split(",").forEach(function(type){ %>
-                
                 <p style="font-size: 16px;"> กลุ่มสาระ : <a href="/edu/comunity?search=<%=type.charAt(0).toUpperCase()+type.slice(1)%>" style="font-size: 16px;" > <%=type.charAt(0).toUpperCase()+type.slice(1)%></a></p>
                 <% })} %>
+                <!-- <p>Total voters: <%= ps.totalVotes %></p> -->
            
           </div>
           <div style="clear: both;"></div>

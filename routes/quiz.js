@@ -53,22 +53,23 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 );
 
 router.get("/view/:quiztopic_id",middleware.isLoggedIn,function(req,res){
-  quiztopic.findById(req.params.quiztopic_id).populate("quizquestions").exec(function(error,idquiz){
+  quizquestion.findById(req.params.quizquestion_id).populate("quizquestions").exec(function(error,idquiz){
       if(error){
           console.log(error);      
       }else{
-          res.render("quiz/quizview",{quiztopic:idquiz});
+        console.log(idquiz);
+          res.render("quiz/quizview",{quizquestion:idquiz});
       }
   });
 });
 
-router.get("/view/:quiztopic_id/createquestion/new",middleware.isLoggedIn,function(req,res){
+router.get("/view/:quizquestion_id/createquestion/new",middleware.isLoggedIn,function(req,res){
   console.log(req.params.id);
-  quiztopic.findById(req.params.quiztopic_id, function(err,quiztopic){
+  quizquestion.findById(req.params.quizquestion_id, function(err,quiztopic){
       if(err){
           console.log(err);
       }else{
-          res.render("quiz/createQuestion",{quiztopic:quiztopic});
+          res.render("quiz/createQuestion",{quizquestion:quiztopic});
       }
   });
 });

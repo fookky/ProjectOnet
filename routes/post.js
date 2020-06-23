@@ -71,6 +71,10 @@ router.get("/comunity/newest", function(req, res){
   })
 });
 
+router.get("/tcas/tcas63",function(req,res){
+  res.render("tcas63");
+ });
+
 router.get("/",function(req,res){
     res.render("index");
    });
@@ -108,12 +112,16 @@ router.post("/comunity",middleware.isLoggedIn,upload.single("image") ,function(r
         id: req.user.id,
         username: req.user.username
       };
+    var numFact = 0
+    var totalVotes = 0
     let newsposts = {
          name:n_name,
          image:n_image,
          desc:n_desc,
          type:n_type,
          author: author,
+         numFact: numFact, 
+         totalVotes: totalVotes
 
       };
       console.log(newsposts);
@@ -133,6 +141,7 @@ router.get("/post/:post_id",middleware.isLoggedIn,function(req,res){
         if(error){
             console.log("error3636");      
         }else{
+          console.log(idpost);
             res.render("socials/showdetail",{post:idpost});
         }
     });
@@ -140,34 +149,7 @@ router.get("/post/:post_id",middleware.isLoggedIn,function(req,res){
 
 
 
-// count like
-// router.post("/post/:post_id", isLoggedIn, function(req, res){
-//   var userId = req.user._id;
-//   post.findById(req.params.post_id, function(err, post){
-//       if(err){
-//           req.flash("error", err.message);
-//           res.redirect("back");
-//       };
-//       var votedPost = {
-//       postId: post,
-//       userChoice: Object.keys(req.body)[0]};
-//       if (votedPost.userChoice == "Fact"){
-//           post.numFact++;
-//       }
-//       else if (votedPost.userChoice == "Myth"){
-//           post.numMyth++;
-//       };
-//       post.totalVotes++;
-//       post.save()
-//       user.findById(userId, function(err, user){
-//           if (err){
-//               req.flash("error", err.message);
-//               res.redirect("back");}
-//           user.votedPosts.push(votedPost);
-//           user.save();
-//       });
-//   });
-// });
+
 
 // edit
 router.get('/post/:post_id/edit', middleware.postOwner,
