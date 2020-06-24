@@ -25,6 +25,7 @@ var path = require('path');
 mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});
 // mongoose.set('useCreateIndex',true);
 // mongoose.set('useFindAndModify',false);
+const port=process.env.PORT || 3000;
 let app = express();
 
 app.set("view engine","ejs");
