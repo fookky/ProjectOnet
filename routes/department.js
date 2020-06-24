@@ -24,7 +24,7 @@ const imageFilter = function(req, file, cb){
       
 const upload = multer({storage: storage, fileFilter: imageFilter})
 
-router.get("/",function(req,res){
+router.get("/",middleware.isAdmin,function(req,res){
     department.find({},function(error,alldepartment){
          if(error){
             console.log(err);
@@ -37,11 +37,11 @@ router.get("/",function(req,res){
  });
 
 
-router.get("/add",function(req,res){
+router.get("/add",middleware.isAdmin,function(req,res){
     res.render("department/new");
     });
 
-router.post("/",upload.single("image") ,function(req,res){
+router.post("/",middleware.isAdmin,upload.single("image") ,function(req,res){
     let n_name = req.body.name;
     let n_image = req.file.filename;
     let n_desc = req.body.desc;
@@ -69,7 +69,7 @@ router.post("/",upload.single("image") ,function(req,res){
           })
        });
 
-router.get('/delete/:department_id',
+router.get('/delete/:department_id',middleware.isAdmin,
  function(req, res) {
     department.findByIdAndDelete(req.params.department_id, function(err) {
      if (err) {
@@ -84,7 +84,7 @@ router.get('/delete/:department_id',
 );
 
 // edit
-router.get('/:department_id/edit',
+router.get('/:department_id/edit',middleware.isAdmin,
   function(req, res) {
     department.findById(req.params.department_id, function(err, founddepartment) {
       if (err) {
@@ -102,7 +102,7 @@ router.get('/:department_id/edit',
 
 // update
 
-router.put('/:department_id', upload.single('image'),
+router.put('/:department_id',middleware.isAdmin, upload.single('image'),
   function(req, res) {
     let n_name = req.body.name;
     let n_desc = req.body.desc;

@@ -7,9 +7,7 @@ const   mongoose = require("mongoose"),
             desc : String,
             createdAt: { type: Date, default: Date.now },
             type: String,
-            fact: String,
-            numFact: Number,
-            totalVotes: Number,
+            views: Number,
             author: {
                 id: {
                   type: mongoose.Schema.Types.ObjectId,

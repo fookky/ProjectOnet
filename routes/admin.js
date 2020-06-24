@@ -7,7 +7,7 @@ const express = require("express"),
       user = require("../models/user");
 
 
-router.get("/",middleware.isLoggedIn,function(req,res){
+router.get("/",middleware.isAdmin,function(req,res){
     // user.isAdmin = "true";
     res.render("admin/admin");
  });
@@ -20,7 +20,7 @@ router.get("/",middleware.isLoggedIn,function(req,res){
 //     // user.isAdmin = "true";
 //     res.render("admin/user");
 //  });
- router.get("/user",middleware.isLoggedIn,function(req,res){
+ router.get("/user",middleware.isAdmin,function(req,res){
     user.find({},function(error,alluser){
          if(error){
             console.log("error-------");
@@ -31,7 +31,7 @@ router.get("/",middleware.isLoggedIn,function(req,res){
         }
  })
  });
- router.get('/user/delete/:user_id', middleware.isLoggedIn,
+ router.get('/user/delete/:user_id', middleware.isAdmin,
   function(req, res) {
     user.findByIdAndDelete(req.params.user_id, function(err) {
       if (err) {
@@ -46,7 +46,7 @@ router.get("/",middleware.isLoggedIn,function(req,res){
 );
 
 
-router.get("/postmange",middleware.isLoggedIn,function(req,res){
+router.get("/postmange",middleware.isAdmin,function(req,res){
     post.find({},function(error,allpost){
          if(error){
             console.log("error-------");
@@ -58,7 +58,7 @@ router.get("/postmange",middleware.isLoggedIn,function(req,res){
  })
  });
 
- router.get('/postmange/delete/:post_id', middleware.isLoggedIn,
+ router.get('/postmange/delete/:post_id', middleware.isAdmin,
   function(req, res) {
     post.findByIdAndDelete(req.params.post_id, function(err) {
       if (err) {
@@ -72,7 +72,7 @@ router.get("/postmange",middleware.isLoggedIn,function(req,res){
   }
 );
 
-router.get("/postmange/view/:post_id",middleware.isLoggedIn,function(req,res){
+router.get("/postmange/view/:post_id",middleware.isAdmin,function(req,res){
   post.findById(req.params.post_id).populate("comments").exec(function(error,idpost){
       if(error){
           console.log("error3636");      

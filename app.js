@@ -9,7 +9,7 @@ const express = require("express"),
       passportLocalMongoose = require("passport-local-mongoose"),
       User = require("./models/user"),
       post = require("./models/post"),
- // quiztopic = require("./models/quiztopic"),
+  //quiztopic = require("./models/quiztopic"),
   //quizquestion = require("./models/quizquestion"),
       seedDB = require("./seeds"),
       postRoutes = require("./routes/post"),
@@ -17,7 +17,7 @@ const express = require("express"),
       indexRoutes = require("./routes/index"),
       learnRoutes = require("./routes/learn"),
       departmentRoutes = require("./routes/department"),
-  /// quizRoutes = require("./routes/quiz"),
+   //quizRoutes = require("./routes/quiz"),
       commentsRoutes = require("./routes/comments");
   
 var path = require('path');
@@ -44,7 +44,7 @@ app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
-    res.locals.currentUser = req.user;
+    res.locals.user = req.user;
     next();
 });
 app.use(cookieParser('secret'));
@@ -63,6 +63,12 @@ app.use("/admin/department",departmentRoutes);
 //app.use("/admin/quiz",quizRoutes);
 app.use("/edu",postRoutes);
 app.use("/edu/post/:post_id/comment",commentsRoutes);
+
+// app.get('*',function(req,res,next){
+//     res.locals.user = req.user || null;
+//     res.locals.currentUser = req.user;
+//     next();
+// });
 
 seedDB();
 

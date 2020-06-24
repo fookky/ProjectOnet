@@ -72,15 +72,14 @@ middlewareObj.CommentOwner = function(req, res, next) {
     }
   };
 
-  // middlewareObj.LoggedInadmin = function(req, res, next) {
-  //   if(req.isAuthenticated())  {
-  //     user.isAdmin = true;
-  //     res.redirect("/admin")
-  //   } else {
-  //     req.flash('error', 'NO!!!!');
-  //     res.redirect('/edu');
-  //   }
-  // };
+  middlewareObj.isAdmin = function(req, res, next) {
+    if(req.user.isAdmin) {
+      next();
+    } else {
+      req.flash('error', 'You don\'t have access to that');
+      res.redirect('back');
+    }
+  }
 
 
 module.exports = middlewareObj;

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 75%;
+          background-color: white;
+          padding: 20px;
+         
+          margin: auto;
+        }
+        
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {background-color:gray}
+        
+.fbox{
+    width: 50%;
+    height: auto;
+    position: relative;
+    margin: 4% auto;
+    background: #fff;
+    padding: 20px;
+    overflow: hidden;
+    opacity: 0.8;
+    
+    
+}
+.nxtBtn{
+    float: left;
+    border: none;
+    background-color: #8B0000;
+    color: #ffffff;
+    padding: 10px;
+    width: 60px;
+    height: 35px;
+    font-size: 18px;
+}
+.lftCss{
+    
+    padding: 10px;
+    float: left;
+}
+        </style>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minium-scale=1.0"> 
+    <meta http-equiv= "x-ua-compatible" content = "ie-edge">
+  
+    <link href="http://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/project1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta http-equiv="Content-Language" content="th">
+    <meta http-equiv="content-Type" content="text/html; charset=window-874">
+    <meta http-equiv="content-Type" content="text/html; charset=tis-620">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/"> 
+    <title>
+        quize
+    </title>
+    <script src="data.js" defer></script>
+    <script src="index.js" defer></script>
+    <meta http-equiv="Content-Language" content="th">
+    <meta charset="UTF-8">
+    
+ 
+</head>
+<body class="hero">
+
+    <header>
+        <div class="container">
+            <nav > 
+                <div class="menu-icons">
+                    <i class="icon ion-md-menu"></i>
+                    <i class="icon ion-md-close"></i>
+                </div>
+                <a href="project1.html" class="logo">
+                    <i class="fas fa-book"></i>
+                </a>
+                <ul class="nav-list">
+                    <li>
+                        <a class="actives" href="/edu">Home</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu/quiz">Quiz
+                        </a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu/learning">คลังบทเรียน
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="activess" href="#">GAT PAT</a>
+                            </li>
+                            <li>
+                                <a class="activess" href="#">9 วิชาสามัญ </a>
+                            </li>
+                            <li>
+                                <a class="activess" href="#">O-NET</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu/departments">รีวิวคณะ</a>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu/tcas">รายละเอียดการสอบเข้า
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="activess" href="/edu/tcas/tcas63">TCAS63</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="actives" href="/edu/comunity">ชุมชน
+                            <i class="icon ion-md-arrow-dropdown"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="activess" href="/edu/comunity/newest">โพสล่าสุด</a>
+                                <a class="activess" href="/edu/comunity/popular">ยอดนิยมม</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <% if(!locals.user){%>
+                    <li class ="move-right btn">
+                        <a href="/login"><center>LOGIN</center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/signup"><center>REGISTER</center></a>
+                    </li>
+                <% } else{ %>
+                    <li class ="move-right btn">
+                        <a href="/profile/<%= user.id %>"> <center><%= user.username%></center></a>
+                    </li>
+                    <li class ="move-rightsecond btn">
+                        <a href="/logout"><center>LOGOUT</center></a>
+                    </li>
+              <%  } %>
+           
+                </ul>
+            </nav>
+            <% if(error && error.length > 0){ %>
+                <div class="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert success">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+    </header>
+
+<br><br><br><br><br><br><br>
+        <div class="qPanel">
+            <div class="fbox">
+                <h1 style="font-size: 16px;" >วิชา สังคมศึกษา 2560</h1>
+            <div style="font-size: 16px;" id="question">    
+            </div>
+            <div><input type="radio" id="opt1" name="options">
+                 <span style="font-size: 16px;" id="optt1"></span>
+            </div>
+            <div><input type="radio" id="opt2" name="options">
+                <span style="font-size: 16px;" id="optt2"></span>
+            </div>
+            <div><input type="radio" id="opt3" name="options">
+                <span style="font-size: 16px;" id="optt3"></span>
+            </div>
+            <div class="lftCss">
+            <button class="nxtBtn" onclick="checkAnswer()">next</button>
+            </div>
+        </div>
+        </div>
+
+        <script>
+            const selectElement = (element) => document.querySelector(element);
+            selectElement(element = '.menu-icon'),addEventListener(type ='click', listener = () => {
+                selectElement(element  = 'nav').classList.toggle( token  = 'active');
+            });
+            var jsonData = [
+    {
+        "q" : "1.พิธีกรรมใดที่พระเยซูทรงได้รับหมายจากนักบุญในศาสนายูดาห์",
+        "opt1" : "ศีลล้างบาป",
+        "opt2" : "ศีลกำลัง",
+        "opt3" : "ศีลอภัยบาป",
+        "answer" : "ศีลกำลัง"
+    },
+    {
+        "q" : "2.ข้อใดเป็นปัจจัยที่ก่อให้เกิดสัมมาทิฏฐิที่สอดคล้องกับ “ปรโตโฆสะ” (เสียงจากผู้อื่น)",
+        "opt1" : "พ่อแม่ติดสุรา",
+        "opt2" : "ครูที่ตามใจนักเรียน",
+        "opt3" : "ผู้นำชุมชนชักชวนให้บำเพ็ญประโยชน์",
+        "answer" : "ผู้นำชุมชนชักชวนให้บำเพ็ญประโยชน์"
+    },
+    {
+        "q" : "3.ข้อใดกล่าวได้อย่างถูกต้องตามหลักอริยสัจ 4",
+        "opt1" : "วิธีแก้ปัญหาชีวิตเป็นเหตุ",
+        "opt2" : "ปัญหาของชีวิตเป็นเหตุ ",
+        "opt3" : "สาเหตุของปัญหาชีวิตเป็นผล",
+        "answer" : "วิธีแก้ปัญหาชีวิตเป็นเหตุ"
+    },
+    {
+        "q" : "4.พิธีกรรมใดในศาสนาพราหมณ์-ฮินดูที่ตรงกับการทำบุญศพและการเผาศพตามพิธีกรรมทางพระพุทธศาสนาในสังคมไทย",
+        "opt1" : "ชาตกรรม",
+        "opt2" : "วิวาหะ",
+        "opt3" : "เปรตกรรม",
+        "answer" : "เปรตกรรม"
+    }
+    
+];
+            //json array movement variable
+        var i = 0 ;
+        var correctCount = 0;
+        //initialize the first question
+        generate(0);
+        //generate from json array data with index
+        function generate(index){
+            document.getElementById("question").innerHTML = jsonData[index].q ;
+            document.getElementById("optt1").innerHTML = jsonData[index].opt1 ;
+            document.getElementById("optt2").innerHTML = jsonData[index].opt2 ;
+            document.getElementById("optt3").innerHTML = jsonData[index].opt3 ;
+        }
+        function checkAnswer(){
+            if(document.getElementById("opt1").checked && jsonData[i].opt1 == jsonData[i].answer){
+                correctCount++;
+            }
+            if(document.getElementById("opt2").checked && jsonData[i].opt2 == jsonData[i].answer){
+                correctCount++;
+            }
+            if(document.getElementById("opt3").checked && jsonData[i].opt3 == jsonData[i].answer){
+                correctCount++;
+            }
+            //increment i for next question
+            i++;
+            if(jsonData.length-1 < i){
+                document.write("<center><body style='background: #000000;padding-top: 400px'>")
+                document.write("<p style='color:#ffffff;font-size:18pt;'> *****   Your score is : "+correctCount+"   *****</p>");
+               
+            }
+            //callback to generate
+            generate(i);    
+        }
+        
+        </script>
+        
+    </body>
+    </html>

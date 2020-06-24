@@ -1,0 +1,21 @@
+<%- include("../partials/header") %>
+<br><br><br><br><br>
+<div class="social">
+    <form action="/profile/<%= user._id %>?_method=PUT" method="POST" >
+      <label for="fname">username</label>
+      <input type="text" id="fname"name="user[username]" placeholder="Name" value="<%= user.username %>">
+      <label for="fname">Firstname</label>
+      <input type="text" id="fname"name="user[firstname]" placeholder="Name" value="<%= user.firstname %>">
+      <label for="fname">Surname</label>
+      <input type="text" id="fname"name="user[Surname]" placeholder="Name" value="<%= user.Surname %>">
+      <label for="fname">mail</label>
+      <input type="text" id="fname"name="user[mail]" placeholder="Name" value="<%= user.mail %>">
+      <label for="fname">School</label>
+      <input type="text" id="fname"name="user[School]" placeholder="Name" value="<%= user.School %>">
+      <label for="fname">Level</label>
+      <input type="text" id="fname"name="user[Level]" placeholder="Name" value="<%= user.Level %>">
+      <input type="submit">
+    </form>
+  </div>
+
+  <%- include("../partials/footer") %>

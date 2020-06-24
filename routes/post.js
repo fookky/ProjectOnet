@@ -61,7 +61,6 @@ router.get("/comunity", function(req, res){
 
 });
 router.get("/comunity/newest", function(req, res){
-  //Get all posts from DB
   post.find().sort({_id: -1}).exec(function (err, allpost){
       if (err){
           console.log(err);
@@ -70,7 +69,15 @@ router.get("/comunity/newest", function(req, res){
       }
   })
 });
-
+router.get("/comunity/popular", function(req, res){
+  post.find().sort({views: -1}).exec(function (err, allpost){
+      if (err){
+          console.log(err);
+      }else {
+          res.render("socials/social", {post: allpost, noMatch: null})
+      }
+  })
+});
 router.get("/tcas/tcas63",function(req,res){
   res.render("tcas63");
  });
@@ -78,16 +85,21 @@ router.get("/tcas/tcas63",function(req,res){
 router.get("/",function(req,res){
     res.render("index");
    });
-router.get("/comunity",middleware.isLoggedIn,function(req,res){
+router.get("/comunity",function(req,res){
        res.render("socials/social");
    });
    
    
-router.get("/quiz",middleware.isLoggedIn,function(req,res){
+router.get("/quiz",function(req,res){
         res.render("quizeonet");
    });
-   router.get("/thaiquiz",function(req,res){
-    res.render("thaiquize");
+   router.get("/quiz/thaiquiz",function(req,res){
+    res.render("quiz/quizthai61/quiz");
+});   router.get("/quiz/thaiquiz",function(req,res){
+    res.render("quiz/quizthai61/quiz");
+});
+router.get("/quiz/socialquiz",function(req,res){
+  res.render("quiz/quizsocial61/quiz");
 });
 router.get("/review",function(req,res){
     res.render("reviewdepart");
@@ -108,6 +120,7 @@ router.post("/comunity",middleware.isLoggedIn,upload.single("image") ,function(r
     let n_image = req.file.filename;
     let n_desc = req.body.desc;
     let n_type = req.body.type;
+    let n_views = 0;
     let author = {
         id: req.user.id,
         username: req.user.username
@@ -119,9 +132,9 @@ router.post("/comunity",middleware.isLoggedIn,upload.single("image") ,function(r
          image:n_image,
          desc:n_desc,
          type:n_type,
-         author: author,
-         numFact: numFact, 
-         totalVotes: totalVotes
+         views: n_views,
+         author: author
+
 
       };
       console.log(newsposts);
@@ -129,14 +142,25 @@ router.post("/comunity",middleware.isLoggedIn,upload.single("image") ,function(r
         if(error){
             console.log(error);
         }else{
-             console.log("add new");
-             res.redirect("/edu/comunity");
-        };
-    })
- });
+          user.findById(req.user.id, function (err, user) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              user.postuser.push(newpost);
+              user.save();
+            }
+          })
+          console.log("add new");
+          res.redirect("/edu/comunity");
+        }
+      })
+    });
 
 // showpost
-router.get("/post/:post_id",middleware.isLoggedIn,function(req,res){
+router.get("/post/:post_id",middleware.isLoggedIn, async function(req,res){
+  const plus = await post.findById(req.params.post_id, function (req, bada) { });
+  await post.findByIdAndUpdate(req.params.post_id, { views: (plus.views + 1) });
     post.findById(req.params.post_id).populate("comments").exec(function(error,idpost){
         if(error){
             console.log("error3636");      

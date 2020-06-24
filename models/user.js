@@ -10,19 +10,13 @@ let UserSchema = new mongoose.Schema({
     School : String,
     Level : String,
     isAdmin : {type:Boolean, default:false},
-    posts : [
+    postuser : [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref:"post"
         }
     ],
-    votedPosts: [{
-        postId: {           
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "post",
-        },
-        userChoice: String
-        }]
+  
 });
 
 UserSchema.plugin(passportLocalMongoose);

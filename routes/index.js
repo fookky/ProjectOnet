@@ -10,11 +10,43 @@ const express = require("express"),
 router.get("/",function(req,res){
     res.render("main");
 });
+router.get("/",function(req,res){
+    res.render("main");
+});
 
 
+ router.get('/profile/:user_id',middleware.isLoggedIn, function (req, res) {
+    user.findById(req.params.user_id).populate({
+      path: 'postuser', model: 'edu'
+    }).exec(function (err, DataUser) {
+      res.render("users/profile", { user: DataUser, userpost: DataUser.postuser });
+      
+    })
+  })
 
-router.get("/profile",function(req,res){
-    res.render("profile");
+ router.get('/profile/:user_id/edit',middleware.isLoggedIn,function(req, res) {
+    user.findById(req.params.user_id, function(err, founduser) {
+      if (err) {
+          console.log(err);
+        req.flash('error', 'user was not found');
+        res.redirect('back');
+      } else {
+        res.render('users/editprofile', {
+            user: founduser
+        });
+      }
+    });
+  }
+);
+
+router.put("/profile/:user_id",middleware.isLoggedIn, function(req, res){
+    user.findByIdAndUpdate(req.params.user_id, req.body.user, function(err, updateduser){
+       if(err){
+           res.redirect("/profile/:user_id");
+       } else {
+           res.redirect("/profile/" + req.params.user_id);
+       }
+    });
 });
 
 router.get("/login",function(req,res){

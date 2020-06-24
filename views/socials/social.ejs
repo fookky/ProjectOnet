@@ -81,6 +81,7 @@
            <%if (ps.type != null){ %>
               <% ps.type.split(",").forEach(function(type){ %>
                 <p style="font-size: 16px;"> กลุ่มสาระ : <a href="/edu/comunity?search=<%=type.charAt(0).toUpperCase()+type.slice(1)%>" style="font-size: 16px;" > <%=type.charAt(0).toUpperCase()+type.slice(1)%></a></p>
+                <p style="font-size: 16px;" class="para">views: <%= ps.views %></p>
                 <% })} %>
                 <!-- <p>Total voters: <%= ps.totalVotes %></p> -->
            

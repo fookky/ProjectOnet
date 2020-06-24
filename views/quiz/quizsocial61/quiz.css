@@ -1,0 +1,36 @@
+.qPanel{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://c.wallhere.com/photos/d6/08/library_university_books-1556469.jpg!d);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    font-size:20px;
+}
+.form-box{
+    width: 50%;
+    height: auto;
+    position: relative;
+    margin: 4% auto;
+    background: #fff;
+    padding: 20px;
+    overflow: hidden;
+    opacity: 0.8;
+    
+    
+}
+.nxtBtn{
+    float: left;
+    border: none;
+    background-color: #8B0000;
+    color: #ffffff;
+    padding: 10px;
+    width: 60px;
+    height: 35px;
+    font-size: 18px;
+}
+.lftCss{
+    
+    padding: 10px;
+    float: left;
+}
