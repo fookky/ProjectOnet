@@ -118,7 +118,7 @@
         
     <h1 style="font-size: 50px;font-weight: bolder;"><center><%= post.name %></center></h1>
     
-    <center><img id="myImg"  src=<%= post.image %>   width="300" height="350"></center>
+    <center><img id="myImg"  src=<%= "../uploads/"+ post.image %>   width="300" height="350"></center>
       <div id="myModal" class="modal">
       <span class="closes">&times;</span>
       <img class="modal-content" id="img01">
@@ -131,7 +131,7 @@
     </p>
    
     </form>
-    <% if (currentUser && post.author.id.equals(currentUser._id)) { %>
+    <% if (currentUser && post.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
       
       <form action="/edu/post/<%= post._id %>?_method=DELETE" method="POST">
         <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/edit">แก้ไข</a></button>
@@ -154,7 +154,7 @@
   <p style="font-size: 18px;"><strong><%= comment.author.username %></strong> - <%= comment.text %></p><hr>
  
 </form>
-<% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+<% if (currentUser && comment.author.id.equals(currentUser._id)|| currentUser && currentUser.isAdmin) { %>
   <form action="/edu/post/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
     <button  style="width: 30; height: 20; color: green;" ><a href="/edu/post/<%= post._id%>/comment/<%= comment._id %>/edit">แก้ไข</a></button>
     <button  style="width: 30; height: 20; color: red;" >ลบ</button>

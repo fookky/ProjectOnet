@@ -39,12 +39,13 @@ router.get("/comunity", function(req, res){
   var noMatch = null;
   if(req.query.search) {
       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-      post.find({$or: [{name: regex},{type: regex},{desc: regex},{'author.username': regex}]}, function(err, allpost){
+      post.find({$or: [{name: regex},{type: regex},{'author.username': regex}]}, function(err, allpost){
          if(err){
             console.log(err);
          } else {
              if (allpost.length <1){
                  noMatch = "Can not find the post you are looking for";
+
              }
             res.render("socials/social", {post:allpost, noMatch: noMatch})
          }

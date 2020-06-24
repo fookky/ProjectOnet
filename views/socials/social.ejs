@@ -59,9 +59,7 @@
       </form>
     </div>
     
-    <% if (noMatch != null){ %>
-      <h3><%= noMatch %></h3>
-     <% } %>
+    
     <div class="events">
       <%if (currentUser == null){ %>
         <%var toLogin = true } %>
@@ -90,8 +88,12 @@
         </li>
       </ul>
           <% }); %> 
+          <% if (noMatch != null){ %>
+             <br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+           <center><h1 style="color: #ccc; font-size: 30px;"><%= noMatch %></h1></center>
+           <% } %>
     </div>
- 
+  
   </section>
 
 <%- include("../partials/footer") %>

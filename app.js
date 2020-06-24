@@ -21,8 +21,9 @@ const express = require("express"),
       commentsRoutes = require("./routes/comments");
   
 var path = require('path');
+
 // mongoose.set('useUnifiedTopology',true);
-mongoose.connect('mongodb://localhost:27017/edupro', {useNewUrlParser: true});
+mongoose.connect( 'mongodb://localhost:27017/edupro', {useNewUrlParser: true});
 // mongoose.set('useCreateIndex',true);
 // mongoose.set('useFindAndModify',false);
 const port=process.env.PORT || 3000;
