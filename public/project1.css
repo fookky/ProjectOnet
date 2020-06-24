@@ -428,12 +428,14 @@ li.Rmove-right{
     float: left;
     padding: 0 50px 0 50px;
     box-sizing: border-box;
+    
   }
   section .leftbox .content{
     color: #fff;
     background: rgba(0, 0, 0, .5);
     padding: 50px;
     transition: .5s;
+    box-shadow: 10px 10px grey;
   }
   section .leftbox .content:hover{
     background: #e91e63;
@@ -470,6 +472,7 @@ li.Rmove-right{
     box-sizing: border-box;
     height: 200px;
     margin: 15px 0;
+    box-shadow: 10px 10px grey;
   }
   section .events .u .l .time{
     position: relative;
@@ -638,6 +641,8 @@ li.Rmove-right{
     display: block;
     margin: auto;
   }
+
+  /* end community */
 
   /* login&regis */
   

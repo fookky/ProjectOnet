@@ -259,7 +259,7 @@ router.delete('/post/:post_id', middleware.postOwner,
 );
 
 
-router.get("/learning", function(req, res){
+router.get("/learning",middleware.isLoggedIn, function(req, res){
   var learning = null;
   learn.find().sort({_id: -1}).exec(function (err, alllearn){
       if (err){
@@ -279,7 +279,7 @@ router.get("/learning/:learn_id",middleware.isLoggedIn,function(req,res){
   });
 });
 
-router.get("/departments", function(req, res){
+router.get("/departments",middleware.isLoggedIn, function(req, res){
   var departmenting = null;
   department.find().sort({_id: -1}).exec(function (err, alldepartment){
       if (err){

@@ -27,7 +27,7 @@
       <div >
         <div class="ff">
             <div class="hh">
-                <center><h1><%= post.name %></h1></center><br>
+                <center><h1 style="font-size: 20px;"><%= post.name %></h1></center><br>
                 <img class="imm" id="myImg"  src=<%= "../uploads/"+ post.image %>   width="400" height="400">
                 <div id="myModal" class="modal">
                   <span class="closes">&times;</span>
@@ -35,10 +35,10 @@
                   </div>
             <br>
           </div>
-            <P style="font-size: 20px;"><center><%= post.desc %></center></P>  
+            <P style="font-size: 18px;"><center><%= post.desc %></center></P>  
             <p>
-              <br>
-              <button class="likei" >LIKE</button>
+          
+         
               <br>
               <em>สร้างโดย:
                 <%= post.author.username %>, <%= moment(post.createdAt).fromNow() %></em>
