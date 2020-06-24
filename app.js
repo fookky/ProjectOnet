@@ -70,7 +70,7 @@ app.use("/edu/post/:post_id/comment",commentsRoutes);
 //     next();
 // });
 
-seedDB();
+//seedDB();
 
 app.listen(3000,function(req,res){
     console.log("colection ready!");

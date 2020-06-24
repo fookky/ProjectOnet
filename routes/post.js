@@ -147,7 +147,7 @@ router.post("/comunity",middleware.isLoggedIn,upload.single("image") ,function(r
               console.log(err);
             }
             else {
-              user.postuser.push(newpost);
+              user.userposthis.push(newpost);
               user.save();
             }
           })

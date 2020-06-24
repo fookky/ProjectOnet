@@ -46,6 +46,7 @@ router.post("/",middleware.isAdmin,upload.single("image") ,function(req,res){
     let n_image = req.file.filename;
     let n_desc = req.body.desc;
     let n_subject = req.body.subject;
+    let n_department = req.body.department;
     let author = {
       id: req.user._id,
       username: req.user.username
@@ -55,8 +56,8 @@ router.post("/",middleware.isAdmin,upload.single("image") ,function(req,res){
             image:n_image,
             desc:n_desc,
             subject:n_subject,
+            department:n_department,
             author: author,
-      
             };
             console.log(newsposts);
             department.create(newsposts,function(error,newdepartment){
@@ -107,6 +108,7 @@ router.put('/:department_id',middleware.isAdmin, upload.single('image'),
     let n_name = req.body.name;
     let n_desc = req.body.desc;
     let n_subject = req.body.subject;
+    let n_department = req.body.department;
     if(req.file){
       let n_image = req.file.filename;
       department.findByIdAndUpdate(req.params.department_id,function(err,fonddepartment){
@@ -128,12 +130,14 @@ router.put('/:department_id',middleware.isAdmin, upload.single('image'),
         image:n_image,
         desc:n_desc,
         subject:n_subject,
+        department:n_department,
      };
     }else{
       var newsposts = {
         name:n_name,
         desc:n_desc,
         subject:n_subject,
+        department:n_department,
      };
     }
     department.findByIdAndUpdate(req.params.department_id,newsposts,

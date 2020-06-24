@@ -2,9 +2,8 @@ const middleware = require("../middleware");
 const user = require("../models/user");
 
 const express = require("express"),
-      router = express.Router();
-      passport = require("passport"),
-      User = require("../models/user"),
+      router = express.Router(),
+      passport = require("passport");
       
 
 router.get("/",function(req,res){
@@ -15,16 +14,18 @@ router.get("/",function(req,res){
 });
 
 
- router.get('/profile/:user_id',middleware.isLoggedIn, function (req, res) {
+ router.get('/profile/:user_id', function (req, res) {
     user.findById(req.params.user_id).populate({
-      path: 'postuser', model: 'edu'
+      path: 'userposthis', model: 'edu'
     }).exec(function (err, DataUser) {
-      res.render("users/profile", { user: DataUser, userpost: DataUser.postuser });
-      
+       console.log(DataUser);
+      res.render("users/profile", { user: DataUser, userpost: DataUser.userposthis });
     })
   })
 
- router.get('/profile/:user_id/edit',middleware.isLoggedIn,function(req, res) {
+
+
+ router.get('/profile/:user_id/edit',function(req, res) {
     user.findById(req.params.user_id, function(err, founduser) {
       if (err) {
           console.log(err);

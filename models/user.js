@@ -10,12 +10,12 @@ let UserSchema = new mongoose.Schema({
     School : String,
     Level : String,
     isAdmin : {type:Boolean, default:false},
-    postuser : [
+    userposthis : [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref:"post"
         }
-    ],
+    ]
   
 });
 

@@ -6,6 +6,7 @@ const   mongoose = require("mongoose"),
             image: String,
             desc : String,
             subject : String,
+            department : String,
             createdAt: { type: Date, default: Date.now },
             author: {
                 id: {

@@ -144,9 +144,11 @@
             <label for="lname">รายละเอียดเชิงลึก</label>
         </div>
         <div class="col-75">
-          <textarea id="subject" name="subject" placeholder="Write something.."   style="height:200px"></textarea>
+          <textarea id="subject" name="subject" placeholder="Write something.." value="<%= department.subject %>"  style="height:200px"></textarea>
         </div>
       </div>
+      <label for="lname">Department</label>
+      <input type="text" id="lname" name="department" placeholder="detail" value="<%= department.department %>">
 
     
       <input type="submit">
