@@ -8,7 +8,8 @@ const express = require("express"),
       flash = require('connect-flash'),
       passportLocalMongoose = require("passport-local-mongoose"),
       User = require("./models/user"),
-      post = require("./models/post"),
+     post = require("./models/post"),
+      
   //quiztopic = require("./models/quiztopic"),
   //quizquestion = require("./models/quizquestion"),
       seedDB = require("./seeds"),
@@ -21,12 +22,17 @@ const express = require("express"),
       commentsRoutes = require("./routes/comments");
   
 var path = require('path');
-
+const port=process.env.PORT || 3000;
 // mongoose.set('useUnifiedTopology',true);
-mongoose.connect( 'mongodb://localhost:27017/edupro', {useNewUrlParser: true});
+const MONGODB_URL ="mongodb+srv://fookky:fookky21841@project-oqg67.mongodb.net/project?retryWrites=true&w=majority";
+mongoose.connect( MONGODB_URL , {useNewUrlParser: true});
+mongoose.connection.on("connected",()=>{
+    console.log("mongoose connect");
+} );
 // mongoose.set('useCreateIndex',true);
 // mongoose.set('useFindAndModify',false);
-const port=process.env.PORT || 3000;
+
+
 let app = express();
 
 app.set("view engine","ejs");

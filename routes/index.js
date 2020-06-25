@@ -1,5 +1,5 @@
 const middleware = require("../middleware");
-const user = require("../models/user");
+const User = require("../models/user");
 
 const express = require("express"),
       router = express.Router(),
@@ -15,7 +15,7 @@ router.get("/",function(req,res){
 
 
  router.get('/profile/:user_id', function (req, res) {
-    user.findById(req.params.user_id).populate({
+    User.findById(req.params.user_id).populate({
       path: 'userposthis', model: 'edu'
     }).exec(function (err, DataUser) {
        console.log(DataUser);
@@ -26,7 +26,7 @@ router.get("/",function(req,res){
 
 
  router.get('/profile/:user_id/edit',function(req, res) {
-    user.findById(req.params.user_id, function(err, founduser) {
+    User.findById(req.params.user_id, function(err, founduser) {
       if (err) {
           console.log(err);
         req.flash('error', 'user was not found');
@@ -41,7 +41,7 @@ router.get("/",function(req,res){
 );
 
 router.put("/profile/:user_id",middleware.isLoggedIn, function(req, res){
-    user.findByIdAndUpdate(req.params.user_id, req.body.user, function(err, updateduser){
+    User.findByIdAndUpdate(req.params.user_id, req.body.user, function(err, updateduser){
        if(err){
            res.redirect("/profile/:user_id");
        } else {
