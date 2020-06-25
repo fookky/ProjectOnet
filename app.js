@@ -22,7 +22,7 @@ const express = require("express"),
       commentsRoutes = require("./routes/comments");
   
 var path = require('path');
-const port=process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 // mongoose.set('useUnifiedTopology',true);
 const MONGODB_URL ="mongodb+srv://fookky:fookky21841@project-oqg67.mongodb.net/project?retryWrites=true&w=majority";
 mongoose.connect( MONGODB_URL , {useNewUrlParser: true});
@@ -80,7 +80,7 @@ app.use("/edu/post/:post_id/comment",commentsRoutes);
 
 //seedDB();
 
-app.listen(3000,function(req,res){
+app.listen(port,function(req,res){
     console.log("colection ready!");
     });
     
